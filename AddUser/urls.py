@@ -16,15 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 import AddUserApp.views
-from django.conf import settings
-from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', AddUserApp.views.UserListView.as_view(), name='index'),
-    path('edit_user/<int:pk>', AddUserApp.views.UserEditView.as_view(), name='edit_user'),
-    path('add_user/', AddUserApp.views.RegisterView.as_view(), name='add_user'),
-    path('get_user/<int:pk>', AddUserApp.views.UserDetailView.as_view(), name='added'),
-    path('delete_user/<int:user_id>', AddUserApp.views.delete_user),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('', AddUserApp.views.UsersListView.as_view(), name='index'),
+    path('edit_user/<int:pk>', AddUserApp.views.EditUserView.as_view(), name='edit_user'),
+    path('add_user/', AddUserApp.views.AddUserView.as_view(), name='add_user'),
+    path('get_user/<int:pk>', AddUserApp.views.GetUserView.as_view(), name='added'),
+    path('delete_user/<int:pk>', AddUserApp.views.DelUserView.as_view(), name='deleted'),
+]
 
